@@ -1,0 +1,63 @@
+class Correo:
+    def __init__(self, asunto, mensaje, remitente, destinatarios):
+        # Validación: todos deben contener arroba
+        if "@" not in remitente:
+            raise ValueError("El remitente debe contener '@' para ser un correo válido.")
+        for d in destinatarios:
+            if "@" not in d:
+                raise ValueError(f"El destinatario '{d}' no es un correo válido.")
+
+        self.asunto = asunto
+        self.mensaje = mensaje
+        self.remitente = remitente
+        self.destinatarios = destinatarios
+        self.leido = False
+
+    def marcar_como_leido(self):
+        self.leido = True
+
+    def marcar_como_no_leido(self):
+        self.leido = False
+
+    def mostrar_info(self):
+        estado = "Leído" if self.leido else "No leído"
+        print("\n----- CORREO -----")
+        print(f"Asunto: {self.asunto}")
+        print(f"Remitente: {self.remitente}")
+        print("Destinatarios:")
+        for d in self.destinatarios:
+            print(f" - {d}")
+        print(f"Estado: {estado}")
+        print(f"Mensaje: {self.mensaje}")
+        print("------------------\n")
+
+
+# Programa principal
+if __name__ == "__main__":
+    print("=== CREACIÓN DE CORREO ===")
+    asunto = input("Ingrese el asunto: ")
+    mensaje = input("Ingrese el mensaje: ")
+    remitente = input("Ingrese el remitente: ")
+
+    # Destinatarios todos juntos en una sola línea
+    destinatarios_input = input("Ingrese el/los destinatarios (en caso de ser mas de uno, separar con espacio): ")
+    destinatarios = destinatarios_input.split()
+
+    try:
+        correo = Correo(asunto, mensaje, remitente, destinatarios)
+        correo.mostrar_info()
+
+        opcion = input("¿Desea marcar el correo como leído? (s/n): ")
+        if opcion.lower() == "s":
+            correo.marcar_como_leido()
+
+        opcion = input("¿Desea marcar el correo como no leído? (s/n): ")
+        if opcion.lower() == "s":
+            correo.marcar_como_no_leido()
+
+        print(">>> Estado final del correo:")
+        correo.mostrar_info()
+
+    except ValueError as e:
+        print(f"Error: {e}")
+
