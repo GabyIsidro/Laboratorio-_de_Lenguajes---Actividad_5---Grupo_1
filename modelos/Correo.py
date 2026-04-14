@@ -2,7 +2,7 @@ class Correo(object):
     def __init__(self, asunto, mensaje, remitente, destinatarios):
         # Validaciones
         if not asunto:
-            raise ValueError("El asunto no puede estar vacío.")
+            raise ValueError("El asunto no puede estar vacío.") 
         if not mensaje:
             raise ValueError("El mensaje no puede estar vacío.")
         if "@" not in remitente or "." not in remitente:
