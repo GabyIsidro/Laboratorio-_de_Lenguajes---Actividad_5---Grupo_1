@@ -1,6 +1,6 @@
-from modelos.cuenta import Cuenta # Importo la clase Cuenta
-from modelos.contacto import Contacto # Importo la clase Contacto
-from modelos.correo import Correo # Importo la clase Correo
+from modelos.Cuenta import Cuenta # Importo la clase Cuenta
+from modelos.Contacto import Contacto # Importo la clase Contacto
+from modelos.Correo import Correo # Importo la clase Correo
 
 # Clase ClienteCorreo
 class ClienteCorreo(object):
